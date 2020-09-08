@@ -52,13 +52,13 @@
                     <el-button slot="append" @click="gotoRemoteConfig" icon="el-icon-link">配置示例</el-button>
                   </el-select>
                 </el-form-item>
-                <el-form-item label="IncludeRemarks:">
+                <el-form-item label="包含关键词:">
                   <el-input v-model="form.includeRemarks" placeholder="节点名包含的关键字，支持正则" />
                 </el-form-item>
-                <el-form-item label="ExcludeRemarks:">
+                <el-form-item label="排除关键词:">
                   <el-input v-model="form.excludeRemarks" placeholder="节点名不包含的关键字，支持正则" />
                 </el-form-item>
-                <el-form-item label="FileName:">
+                <el-form-item label="文件名:">
                   <el-input v-model="form.filename" placeholder="返回的订阅文件名" />
                 </el-form-item>
                 <el-form-item label-width="0px">
@@ -112,17 +112,6 @@
                   <el-button
                     slot="append"
                     v-clipboard:copy="customSubUrl"
-                    v-clipboard:success="onCopy"
-                    ref="copy-btn"
-                    icon="el-icon-document-copy"
-                  >复制</el-button>
-                </el-input>
-              </el-form-item>
-              <el-form-item label="订阅短链接:">
-                <el-input class="copy-content" disabled v-model="curtomShortSubUrl">
-                  <el-button
-                    slot="append"
-                    v-clipboard:copy="curtomShortSubUrl"
                     v-clipboard:success="onCopy"
                     ref="copy-btn"
                     icon="el-icon-document-copy"
@@ -197,22 +186,27 @@ export default {
         backendOptions: [{ value: "https://sub.naiping.xyz/sub?" }],
         remoteConfig: [
           {
-            label: "universal",
+            label: "通用规则",
             options: [
               {
-                label: "No-Urltest",
+                label: "默认规则",
+                value:
+                  ""
+              },
+              {
+                label: "无Urltest",
                 value:
                   "https://subconverter.oss-ap-southeast-1.aliyuncs.com/Rules/RemoteConfig/universal/no-urltest.ini"
               },
               {
-                label: "Urltest",
+                label: "带Urltest",
                 value:
                   "https://subconverter.oss-ap-southeast-1.aliyuncs.com/Rules/RemoteConfig/universal/urltest.ini"
               }
             ]
           },
           {
-            label: "customized",
+            label: "自定义规则",
             options: [
               {
                 label: "Maying",
@@ -267,7 +261,7 @@ export default {
             ]
           },
           {
-            label: "Special",
+            label: "特殊规则",
             options: [
               {
                 label: "NeteaseUnblock(仅规则，No-Urltest)",
@@ -316,7 +310,6 @@ export default {
 
       loading: false,
       customSubUrl: "",
-      curtomShortSubUrl: "",
 
       dialogUploadConfigVisible: false,
       uploadConfig: "",
@@ -361,11 +354,7 @@ export default {
       const url = "clash://install-config?url=";
       window.open(
         url +
-          encodeURIComponent(
-            this.curtomShortSubUrl !== ""
-              ? this.curtomShortSubUrl
-              : this.customSubUrl
-          )
+          encodeURIComponent(this.customSubUrl)
       );
     },
     surgeInstall() {
