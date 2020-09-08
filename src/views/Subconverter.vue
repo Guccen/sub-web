@@ -263,11 +263,6 @@ export default {
                 label: "贼船",
                 value:
                   "https://subconverter.oss-ap-southeast-1.aliyuncs.com/Rules/RemoteConfig/customized/zeichuan.ini"
-              },
-              {
-                label: "布丁",
-                value:
-                  "https://subconverter.oss-ap-southeast-1.aliyuncs.com/Rules/RemoteConfig/customized/pud.ini"
               }
             ]
           },
