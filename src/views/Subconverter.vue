@@ -134,6 +134,7 @@
                   type="primary" 
                   @click="surgeInstall" 
                   icon="el-icon-connection"
+                  :disabled="customSubUrl.length === 0"
                 >一键导入Surge</el-button>
                 <el-button
                   style="width: 120px"
