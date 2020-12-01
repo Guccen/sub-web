@@ -184,7 +184,7 @@ export default {
           ssd: "ssd",
           v2ray: "v2ray"
         },
-        backendOptions: [{ value: "https://sub.naiping.xyz/sub?" }],
+        backendOptions: [{ value: "https://sub.6201170.xyz/sub?" }],
         remoteConfig: [
           {
             label: "通用规则",
